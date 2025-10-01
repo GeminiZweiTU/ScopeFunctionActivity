@@ -68,15 +68,13 @@ class MainActivity : AppCompatActivity() {
 //
 //        return avg < median
 //    }
-    private fun averageLessThanMedian(listOfNumbers: List<Double>): Boolean =
-        listOfNumbers.run {
-            val avg = average()
-            val sorted = sorted()
-            val median = if (sorted.size % 2 == 0)
-                (sorted[sorted.size / 2] + sorted[(sorted.size - 1) / 2]) / 2
+    private fun averageLessThanMedian(listOfNumbers: List<Double>): Boolean = listOfNumbers.sorted().let {
+        l ->
+            val median = if (l.size % 2 == 0)
+                (l[l.size/2] + l[(l.size - 1) / 2]) / 2
             else
-                sorted[sorted.size / 2]
-            avg < median
+                l[l.size / 2]
+            listOfNumbers.average() < median
         }
 
     // Create a view from an item in a collection, but recycle if possible (similar to an AdapterView's adapter)
